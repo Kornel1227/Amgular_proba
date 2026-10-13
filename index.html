@@ -23,6 +23,41 @@
         <main ng-controller="UserCtrl">
             <h3>User list</h3>
             <hr>
+            <h3>User: {{newUser.name}}</h3>
+
+            <div class="alert alert-danger" ng-if="error">
+                {{ error }}
+            </div>
+            <div class="alert alert-success" ng-if="succes">
+                {{ succes }}
+            </div>
+
+            <form name="userForm" ng-submit="addUser()">
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="name" placeholder="name@example.com" ng-model="newUser.name">
+                    <label for="floatingInput">Name</label>
+                </div>
+    
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="email" placeholder="name@example.com" ng-model="newUser.email">
+                    <label for="floatingInput">Email address</label>
+                </div>
+    
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="passwd" placeholder="Password" ng-model="newUser.passwd">
+                    <label for="floatingPassword">Password</label>
+                </div>
+    
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="confirm" placeholder="Password" ng-model="newUser.confirm">
+                    <label for="floatingPassword">Confirm Password</label>
+                </div>
+    
+                <button type="submit" class="btn btn-primary mb-3">Add user</button>
+
+            </form>
+
             <table class="table table-hover table-stripped">
                 <thead>
                     <tr>
@@ -40,7 +75,7 @@
                         <td>{{ user.email }}</td>
                         <td>{{ user.role }}</td>
                         <td>{{ user.created_at }}</td>
-                        <td><button class="btn btn-danger btn-sm">Delete</button></td>
+                        <td><button class="btn btn-danger btn-sm" ng-click="deleteUser(user.ID)">Delete</button></td>
                     </tr>
                 </tbody>
                 <tfoot>
